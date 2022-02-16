@@ -35,13 +35,13 @@ public class CodeCracker {
             entry("z", "o")
     );
 
-    String decrypt(String message) {
+    String encrypt(String message) {
         return splitter(message)
                 .map(key -> dictionary.getOrDefault(key, key))
                 .collect(Collectors.joining(""));
     }
 
-    String encrypt(String message) {
+    String decrypt(String message) {
         return splitter(message)
                 .map(value -> dictionary.containsValue(value) ? key(dictionary, value) : value)
                 .collect(Collectors.joining(""));

@@ -7,50 +7,50 @@ class CodeCrackerTest {
     CodeCracker cracker = new CodeCracker();
 
     @Test
-    void canDecryptSimpleMessage() {
-        String decryptedMessage = cracker.decrypt("hello");
-        assertEquals(decryptedMessage, "&£aad");
-    }
-
-    @Test
-    void canDecryptMessageContainingSpace() {
-        String decryptedMessage = cracker.decrypt("hello world");
-        assertEquals(decryptedMessage, "&£aad ldga(");
-    }
-
-    @Test
-    void canDecryptMessageContainingNumbers() {
-        String decryptedMessage = cracker.decrypt("hello123");
-        assertEquals(decryptedMessage, "&£aad123");
-    }
-
-    @Test
-    void canDecryptMessageContainingSpecialCharacters() {
-        String decryptedMessage = cracker.decrypt("hello wörld!");
-        assertEquals(decryptedMessage, "&£aad löga(!");
-    }
-
-    @Test
     void canEncryptSimpleMessage() {
-        String encryptedMessage = cracker.encrypt("&£aad");
-        assertEquals(encryptedMessage, "hello");
+        String message = cracker.encrypt("hello");
+        assertEquals(message, "&£aad");
     }
 
     @Test
     void canEncryptMessageContainingSpace() {
-        String encryptedMessage = cracker.encrypt("&£aad ldga(");
-        assertEquals(encryptedMessage, "hello world");
+        String message = cracker.encrypt("hello world");
+        assertEquals(message, "&£aad ldga(");
     }
 
     @Test
     void canEncryptMessageContainingNumbers() {
-        String encryptedMessage = cracker.encrypt("&£aad123");
-        assertEquals(encryptedMessage, "hello123");
+        String message = cracker.encrypt("hello123");
+        assertEquals(message, "&£aad123");
     }
 
     @Test
     void canEncryptMessageContainingSpecialCharacters() {
-        String encryptedMessage = cracker.encrypt("&£aad löga(!");
-        assertEquals(encryptedMessage, "hello wörlda");
+        String message = cracker.encrypt("hello wörld!");
+        assertEquals(message, "&£aad löga(!");
+    }
+
+    @Test
+    void canDecryptSimpleMessage() {
+        String message = cracker.decrypt("&£aad");
+        assertEquals(message, "hello");
+    }
+
+    @Test
+    void canDecryptMessageContainingSpace() {
+        String message = cracker.decrypt("&£aad ldga(");
+        assertEquals(message, "hello world");
+    }
+
+    @Test
+    void canDecryptMessageContainingNumbers() {
+        String message = cracker.decrypt("&£aad123");
+        assertEquals(message, "hello123");
+    }
+
+    @Test
+    void canDecryptMessageContainingSpecialCharacters() {
+        String message = cracker.decrypt("&£aad löga(!");
+        assertEquals(message, "hello wörlda");
     }
 }
